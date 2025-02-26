@@ -26,6 +26,8 @@ typedef uint32_t vaddr_t;
 #define va_end __builtin_va_end
 #define va_arg __builtin_va_arg
 
+// Page size is set to 4096
+#define PAGE_SIZE 4096
 
 // C standard library functions, we're redefining them here since our OS cannot depend on stdlib
 void *memset(void *buf, char c, size_t n);
