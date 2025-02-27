@@ -62,6 +62,21 @@ struct trap_frame {
     } while (0)
 
 
+// Process control block
+// We associate with each process a *kernel stack*, for use in saving and restoring callee-saved CPU registers
+
+#define PROCS_MAX 8     // max num of processes
+
+#define PROC_UNUSED 0   // Unused process control structure   
+#define PROC_RUNNABLE 1 // Runnable process
+
+struct process {
+    int pid;    // process id
+    int state;  // either PROC_UNUSED or PROC_RUNNABLE
+    vaddr_t sp; // stack pointer
+    uint8_t stack[8192]; // kernel stack
+};
+
 struct sbiret {
     long error;
     long value;
